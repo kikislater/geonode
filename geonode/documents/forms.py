@@ -179,7 +179,7 @@ class DocumentCreateForm(TranslationModelForm):
         """
         doc_file = self.cleaned_data.get("doc_file")
 
-        if doc_file and not os.path.splitext(doc_file.name)[1].lower()[1:] in settings.ALLOWED_DOCUMENT_TYPES:
+        if doc_file and not doc_file.split(".")[-1].lower() in settings.ALLOWED_DOCUMENT_TYPES:
             logger.debug("This file type is not allowed")
             raise forms.ValidationError(_("This file type is not allowed"))
 
@@ -215,7 +215,7 @@ class DocumentReplaceForm(forms.ModelForm):
         """
         doc_file = self.cleaned_data.get("doc_file")
 
-        if doc_file and not os.path.splitext(doc_file.name)[1].lower()[1:] in settings.ALLOWED_DOCUMENT_TYPES:
+        if doc_file and not doc_file.split(".")[-1].lower() in settings.ALLOWED_DOCUMENT_TYPES:
             raise forms.ValidationError(_("This file type is not allowed"))
 
         return doc_file

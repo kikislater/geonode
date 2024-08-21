@@ -10,7 +10,7 @@
 /**
  * Class: OpenLayers.Layer.OSM
  * This layer allows accessing OpenStreetMap tiles. By default the OpenStreetMap
- *    hosted tile.openstreetmap.org Mapnik tileset is used. If you wish to use
+ *    hosted basemaps.cartocdn.com/rastertiles/voyager_nolabels Mapnik tileset is used. If you wish to use
  *    a different layer instead, you need to provide a different
  *    URL to the constructor. Here's an example for using OpenCycleMap:
  * 
@@ -36,7 +36,7 @@ OpenLayers.Layer.OSM = OpenLayers.Class(OpenLayers.Layer.XYZ, {
     /**
      * APIProperty: url
      * {String} The tileset URL scheme. Defaults to
-     * : http://[a|b|c].tile.openstreetmap.org/${z}/${x}/${y}.png
+     * : http://[a|b|c].basemaps.cartocdn.com/rastertiles/voyager_nolabels/${z}/${x}/${y}.png
      * (the official OSM tileset) if the second argument to the constructor
      * is null or undefined. To use another tileset you can have something
      * like this:
@@ -48,9 +48,9 @@ OpenLayers.Layer.OSM = OpenLayers.Class(OpenLayers.Layer.XYZ, {
      * (end)
      */
     url: [
-        'http://a.tile.openstreetmap.org/${z}/${x}/${y}.png',
-        'http://b.tile.openstreetmap.org/${z}/${x}/${y}.png',
-        'http://c.tile.openstreetmap.org/${z}/${x}/${y}.png'
+        'http://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/${z}/${x}/${y}.png',
+        'http://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/${z}/${x}/${y}.png',
+        'http://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/${z}/${x}/${y}.png'
     ],
 
     /**

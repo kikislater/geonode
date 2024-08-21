@@ -31,9 +31,9 @@
     var config_layers = config['map']['layers']
     var layers = [
         new OpenLayers.Layer.OSM("OpenCycleMap",
-            ["https://a.tile.openstreetmap.org/${z}/${x}/${y}.png",
-            "https://b.tile.openstreetmap.org/${z}/${x}/${y}.png",
-            "https://c.tile.openstreetmap.org/${z}/${x}/${y}.png"])
+            ["https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/${z}/${x}/${y}.png",
+            "https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/${z}/${x}/${y}.png",
+            "https://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/${z}/${x}/${y}.png"])
     ];
     {% for layer in layers %}
         {% if layer.dataset.ows_url != None and layer.local %}

@@ -617,7 +617,7 @@ class AdvancedSecurityWorkflowManager:
                     ):
                         for _perm in VIEW_PERMISSIONS + DOWNLOAD_PERMISSIONS:
                             safe_remove(prev_perms, _perm)
-            _perm_spec["groups"][ResourceGroupsAndMembersSet.anonymous_group] = list(set(prev_perms))
+            # _perm_spec["groups"][ResourceGroupsAndMembersSet.anonymous_group] = list(set(prev_perms))
 
             if ResourceGroupsAndMembersSet.registered_members_group and getattr(
                 groups_settings, "AUTO_ASSIGN_REGISTERED_MEMBERS_TO_REGISTERED_MEMBERS_GROUP_NAME", False

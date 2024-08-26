@@ -599,10 +599,9 @@ class AdvancedSecurityWorkflowManager:
                     prev_perms += AdminViewPermissionsSet.view_perms.copy()
                     prev_perms = list(set(prev_perms))
                 if created:
-                    # if not AdvancedSecurityWorkflowManager.is_anonymous_can_view():
-                    if settings.RESOURCE_PUBLISHING:
+                    if not AdvancedSecurityWorkflowManager.is_anonymous_can_view():
                         safe_remove(prev_perms, "view_resourcebase")
-                    # if not AdvancedSecurityWorkflowManager.is_anonymous_can_download():
+                    if not AdvancedSecurityWorkflowManager.is_anonymous_can_download():
                         safe_remove(prev_perms, "download_resourcebase")
                 if not AdvancedSecurityWorkflowManager.is_auto_publishing_workflow():
                     if (

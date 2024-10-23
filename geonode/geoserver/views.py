@@ -141,9 +141,9 @@ def style_change_check(request, path, style_name=None, access_token=None):
     # a style is updated with a PUT
     # a layer is updated with a style with a PUT
     # in both case we need to check permissions here
-    # for PUT path is /gs/rest/styles/san_andres_y_providencia_water_a452004b.xml
+    # for PUT path is /geoserver/rest/styles/san_andres_y_providencia_water_a452004b.xml
     # or /ge/rest/layers/geonode:san_andres_y_providencia_coastline.json
-    # for POST path is /gs/rest/styles
+    # for POST path is /geoserver/rest/styles
     # we will suppose that a user can create a new style only if he is an
     # authenticated (we need to discuss about it)
     authorized = True

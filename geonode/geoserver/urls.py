@@ -39,7 +39,7 @@ urlpatterns = [  # 'geonode.geoserver.views',
     re_path(
         r"^rest/layers",
         views.geoserver_proxy,
-        dict(proxy_path="/geoserver/rest/layers", downstream_path="rest/layers"),
+        dict(proxy_path="/geosserver/rest/layers", downstream_path="rest/layers"),
         name="gs_layers",
     ),
     re_path(

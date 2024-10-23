@@ -213,7 +213,7 @@ def check_geoserver_access(request, proxy_path, downstream_path, workspace=None,
             except Exception:
                 ws = None
 
-        if proxy_path == f"/gs/{settings.DEFAULT_WORKSPACE}" and layername:
+        if proxy_path == f"/geoserver/{settings.DEFAULT_WORKSPACE}" and layername:
             import posixpath
 
             raw_url = urljoin(ogc_server_settings.LOCATION, posixpath.join(workspace, layername, downstream_path, path))
@@ -333,7 +333,7 @@ def _response_callback(**kwargs):
             else:
                 _content = content
             if re.findall(f"(?=(\\b{'|'.join(content_type_list)}\\b))", content_type):
-                _gn_proxy_url = urljoin(settings.SITEURL, "/gs/")
+                _gn_proxy_url = urljoin(settings.SITEURL, "/geoserver/")
                 content = _content.replace(ogc_server_settings.LOCATION, _gn_proxy_url).replace(
                     ogc_server_settings.PUBLIC_LOCATION, _gn_proxy_url
                 )

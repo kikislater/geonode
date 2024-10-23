@@ -95,7 +95,7 @@ GEOSERVER_LOCATION = os.getenv(
 )
 
 GEOSERVER_PUBLIC_LOCATION = os.getenv(
-    'GEOSERVER_PUBLIC_LOCATION', '{}gs/'.format(SITEURL)
+    'GEOSERVER_PUBLIC_LOCATION', '{}geoserver/'.format(SITEURL)
 )
 
 GEOSERVER_ADMIN_USER = os.getenv(
@@ -287,7 +287,7 @@ if 'geonode.geoserver' in INSTALLED_APPS:
         "source": {
             "ptype": "gxp_wmscsource",
             "url": OGC_SERVER['default']['PUBLIC_LOCATION'] + "wms",
-            "restUrl": "/gs/rest"
+            "restUrl": "/geoserver/rest"
         }
     }
     baselayers = MAP_BASELAYERS
@@ -310,7 +310,7 @@ if 'geonode.geoserver' in INSTALLED_APPS:
         "title": "Local GeoServer",
         "group": "background",
         "format": "image/png8",
-        "restUrl": "/gs/rest"
+        "restUrl": "/geoserver/rest"
     }
     # baselayers = MAPSTORE_BASELAYERS
     # MAPSTORE_BASELAYERS = [LOCAL_GEOSERVER]

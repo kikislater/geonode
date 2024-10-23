@@ -678,7 +678,7 @@ class LayerTests(GeoNodeBaseTestSupport):
         }
 
         change_style_url = urljoin(
-            settings.SITEURL, f"/gs/rest/workspaces/{settings.DEFAULT_WORKSPACE}/styles/{layer.name}?raw=true"
+            settings.SITEURL, f"/geoserver/rest/workspaces/{settings.DEFAULT_WORKSPACE}/styles/{layer.name}?raw=true"
         )
         logger.debug(f"{change_style_url}")
 
@@ -694,7 +694,7 @@ class LayerTests(GeoNodeBaseTestSupport):
         post_request.user = AnonymousUser()
         raw_url, headers, access_token, downstream_path = check_geoserver_access(
             post_request,
-            "/gs/rest/workspaces",
+            "/geoserver/rest/workspaces",
             "rest/workspaces",
             workspace="geonode",
             layername=layer.name,
@@ -739,7 +739,7 @@ class LayerTests(GeoNodeBaseTestSupport):
         put_request.user = AnonymousUser()
         raw_url, headers, access_token, downstream_path = check_geoserver_access(
             put_request,
-            "/gs/rest/workspaces",
+            "/geoserver/rest/workspaces",
             "rest/workspaces",
             workspace="geonode",
             layername=layer.name,
@@ -791,7 +791,7 @@ class LayerTests(GeoNodeBaseTestSupport):
         post_request.user = AnonymousUser()
         raw_url, headers, access_token, downstream_path = check_geoserver_access(
             post_request,
-            "/gs/rest/workspaces",
+            "/geoserver/rest/workspaces",
             "rest/workspaces",
             workspace="geonode",
             layername=layer.name,
@@ -964,33 +964,33 @@ class LayerTests(GeoNodeBaseTestSupport):
         self.assertIsNone(ogc_settings.SFDSDFDSF)
 
         # Testing REST endpoints
-        route = resolve("/gs/rest/layers").route
-        self.assertEqual(route, "^gs/rest/layers")
+        route = resolve("/geoserver/rest/layers").route
+        self.assertEqual(route, "^geoserver/rest/layers")
 
-        route = resolve("/gs/rest/imports").route
-        self.assertEqual(route, "^gs/rest/imports")
+        route = resolve("/geoserver/rest/imports").route
+        self.assertEqual(route, "^geoserver/rest/imports")
 
-        route = resolve("/gs/rest/sldservice").route
-        self.assertEqual(route, "^gs/rest/sldservice")
+        route = resolve("/geoserver/rest/sldservice").route
+        self.assertEqual(route, "^geoserver/rest/sldservice")
 
-        store_resolver = resolve("/gs/rest/stores/geonode_data/")
+        store_resolver = resolve("/geoserver/rest/stores/geonode_data/")
         self.assertEqual(store_resolver.url_name, "gs_stores")
         self.assertEqual(store_resolver.kwargs["store_type"], "geonode_data")
-        self.assertEqual(store_resolver.route, "^gs/rest/stores/(?P<store_type>\\w+)/$")
+        self.assertEqual(store_resolver.route, "^geoserver/rest/stores/(?P<store_type>\\w+)/$")
 
-        sld_resolver = resolve("/gs/rest/styles")
+        sld_resolver = resolve("/geoserver/rest/styles")
         self.assertEqual(sld_resolver.url_name, "gs_styles")
         self.assertTrue("workspace" not in sld_resolver.kwargs)
-        self.assertEqual(sld_resolver.kwargs["proxy_path"], "/gs/rest/styles")
+        self.assertEqual(sld_resolver.kwargs["proxy_path"], "/geoserver/rest/styles")
         self.assertEqual(sld_resolver.kwargs["downstream_path"], "rest/styles")
-        self.assertEqual(sld_resolver.route, "^gs/rest/styles")
+        self.assertEqual(sld_resolver.route, "^geoserver/rest/styles")
 
-        sld_resolver = resolve("/gs/rest/workspaces/geonode/styles")
+        sld_resolver = resolve("/geoserver/rest/workspaces/geonode/styles")
         self.assertEqual(sld_resolver.url_name, "gs_workspaces")
         self.assertEqual(sld_resolver.kwargs["workspace"], "geonode")
-        self.assertEqual(sld_resolver.kwargs["proxy_path"], "/gs/rest/workspaces")
+        self.assertEqual(sld_resolver.kwargs["proxy_path"], "/geoserver/rest/workspaces")
         self.assertEqual(sld_resolver.kwargs["downstream_path"], "rest/workspaces")
-        self.assertEqual(sld_resolver.route, "^gs/rest/workspaces/(?P<workspace>\\w+)")
+        self.assertEqual(sld_resolver.route, "^geoserver/rest/workspaces/(?P<workspace>\\w+)")
 
         # Testing OWS endpoints
         wcs = _wcs_get_capabilities()

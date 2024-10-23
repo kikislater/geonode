@@ -918,6 +918,7 @@ LOCKDOWN_GEONODE = ast.literal_eval(os.getenv("LOCKDOWN_GEONODE", "False"))
 AUTH_EXEMPT_URLS = (
     f"{FORCE_SCRIPT_NAME}/o/*",
     f"{FORCE_SCRIPT_NAME}/gs/*",
+    f"{FORCE_SCRIPT_NAME}/geoserver/*",
     f"{FORCE_SCRIPT_NAME}/account/*",
     f"{FORCE_SCRIPT_NAME}/static/*",
     f"{FORCE_SCRIPT_NAME}/api/o/*",
@@ -2060,7 +2061,7 @@ if USE_GEOSERVER:
             "attribution": f"&copy; {SITEURL}",
             "ptype": LOCAL_GXP_PTYPE,
             "url": f"{OGC_SERVER['default']['PUBLIC_LOCATION']}ows",
-            "restUrl": "/gs/rest",
+            "restUrl": "/geoserver/rest",
         }
     }
     LOCAL_GEOSERVER = {
@@ -2068,8 +2069,8 @@ if USE_GEOSERVER:
             "title": "GeoServer - Private Layers",
             "attribution": f"&copy; {SITEURL}",
             "ptype": LOCAL_GXP_PTYPE,
-            "url": "/gs/ows",
-            "restUrl": "/gs/rest",
+            "url": "/geoserver/ows",
+            "restUrl": "/geoserver/rest",
         }
     }
     baselayers = MAP_BASELAYERS

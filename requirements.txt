@@ -86,6 +86,7 @@ geonode-pinax-notifications==6.0.0.2
 
 # GeoNode org maintained apps.
 django-geonode-mapstore-client==4.3.1
+#git+https://github.com/GeoNode/geonode-mapstore-client.git@master#egg=django_geonode_mapstore_client
 geonode-importer==1.0.10
 django-avatar==8.0.0
 geonode-oauth-toolkit==2.2.2.2
@@ -93,7 +94,8 @@ geonode-user-messages==2.0.2.2
 geonode-announcements==2.0.2.2
 django-activity-stream==2.0.0
 gn-arcrest==10.5.6
-geoserver-restconfig~=2.0.11
+#geoserver-restconfig~=2.0.11
+git+https://github.com/pacuhe2/geoserver-restconfig.git@ISSUE_47#egg=geoserver-restconfig
 gn-gsimporter==2.0.4
 gisdata==0.5.4
 

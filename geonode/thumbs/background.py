@@ -465,7 +465,7 @@ class OSMTileBackground(GenericXYZBackground):
         """
         super().__init__(thumbnail_width, thumbnail_height, max_retries, retry_delay)
 
-        self.url = "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+        self.url = "https://basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png"
         self.tile_size = 256
 
 

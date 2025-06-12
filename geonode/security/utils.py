@@ -596,7 +596,7 @@ class AdvancedSecurityWorkflowManager:
                 if not AdvancedSecurityWorkflowManager.is_auto_publishing_workflow() and not _resource.is_approved:
                     for _perm in VIEW_PERMISSIONS + DOWNLOAD_PERMISSIONS:
                         safe_remove(prev_perms, _perm)
-                _perm_spec["groups"][ResourceGroupsAndMembersSet.registered_members_group] = list(set(prev_perms))
+                # _perm_spec["groups"][ResourceGroupsAndMembersSet.registered_members_group] = list(set(prev_perms))
 
         return _perm_spec
 

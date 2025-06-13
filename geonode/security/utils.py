@@ -105,7 +105,10 @@ def get_visible_resources(
         if unpublished_not_visible:
             if not user or not user.is_authenticated or user.is_anonymous:
                 queryset = queryset.exclude(is_published=False)
-
+        
+        # Hide resources that are published but not approved
+        queryset = queryset.exclude(is_published=True, is_approved=False)
+        
         # Hide Resources Belonging to Private Groups
         if private_groups_not_visibile:
             private_groups = GroupProfile.objects.filter(access="private").values("group")

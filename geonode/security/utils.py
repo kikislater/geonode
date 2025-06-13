@@ -107,7 +107,25 @@ def get_visible_resources(
                 queryset = queryset.exclude(is_published=False)
         
         # Hide resources that are published but not approved
-        queryset = queryset.exclude(is_published=True, is_approved=False)
+        # queryset = queryset.exclude(is_published=True, is_approved=False)
+        ######################################
+        ### But let user see his own datasets
+        # if user and user.is_authenticated:
+        #     queryset = queryset.exclude(
+        #         Q(is_published=True, is_approved=False) & ~Q(owner=user)
+        #         )
+        # else:
+        #     queryset = queryset.exclude(is_published=True, is_approved=False)
+        ######################################
+        # And also not published, not approved
+        if user and user.is_authenticated:
+            queryset = queryset.exclude(
+                (Q(is_published=True, is_approved=False) | Q(is_published=False, is_approved=False)) & ~Q(owner=user)
+                )
+        else:
+            queryset = queryset.exclude(
+                Q(is_published=True, is_approved=False) | Q(is_published=False, is_approved=False)
+                )
         
         # Hide Resources Belonging to Private Groups
         if private_groups_not_visibile:

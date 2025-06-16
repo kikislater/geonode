@@ -118,34 +118,14 @@ def get_visible_resources(
         #     queryset = queryset.exclude(is_published=True, is_approved=False)
         ######################################
         # And also not published, not approved
-        # if user and user.is_authenticated:
-        #     queryset = queryset.exclude(
-        #         (Q(is_published=True, is_approved=False) | Q(is_published=False, is_approved=False)) & ~Q(owner=user)
-        #         )
-        # else:
-        #     queryset = queryset.exclude(
-        #         Q(is_published=True, is_approved=False) | Q(is_published=False, is_approved=False)
-        #         )
-        ###############################
-        # Explicit manager
         if user and user.is_authenticated:
-            # Filter out datasets that are not approved or not published,
-            # unless the user is the owner or a group manager
-            not_visible_filter = (
-                Q(is_published=True, is_approved=False) |
-                Q(is_published=False, is_approved=False)
-            )
-
-            visible_ids = []
-            for res in queryset:
-                groups_info = AdvancedSecurityWorkflowManager.compute_resource_groups_and_members_set(res.uuid)
-                if (
-                    res.owner == user or
-                    user in groups_info.group_managers
-                ):
-                    visible_ids.append(res.id)
-
-            queryset = queryset.exclude(not_visible_filter).union(queryset.filter(id__in=visible_ids))        
+            queryset = queryset.exclude(
+                (Q(is_published=True, is_approved=False) | Q(is_published=False, is_approved=False)) & ~Q(owner=user)
+                )
+        else:
+            queryset = queryset.exclude(
+                Q(is_published=True, is_approved=False) | Q(is_published=False, is_approved=False)
+                )
         
         # Hide Resources Belonging to Private Groups
         if private_groups_not_visibile:

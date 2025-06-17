@@ -113,13 +113,15 @@ def get_visible_resources(
         ### But let user see his own datasets
         if user and user.is_authenticated:
             if is_staff:
-                pass
+                queryset = queryset.exclude(
+                (Q(is_published=False, is_approved=False))
+                )
             else:
                 queryset = queryset.exclude(
-                Q(is_published=True, is_approved=False) & ~Q(owner=user)
+                (Q(is_published=True, is_approved=False) | Q(is_published=False, is_approved=False)) & ~Q(owner=user)
                 )
         else:
-            queryset = queryset.exclude(Q(is_published=True, is_approved=False) | Q(is_published=False, is_approved=False))
+            queryset = queryset.exclude(Q(is_published=True, is_approved=False) | Q(is_published=False, is_approved=False) | Q(is_published=False, is_approved=True))
         ######################################
         # And also not published, not approved
         # if user and user.is_authenticated:

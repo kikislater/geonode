@@ -65,6 +65,7 @@ def get_visible_resources(
     from geonode.groups.models import GroupProfile
 
     is_admin = user.is_superuser if user and user.is_authenticated else False
+    is_staff = user.is_staff if user and user.is_authenticated else False
     anonymous_group = None
     public_groups = GroupProfile.objects.exclude(access="private").values("group")
     groups = []
@@ -111,11 +112,14 @@ def get_visible_resources(
         ######################################
         ### But let user see his own datasets
         if user and user.is_authenticated:
-            queryset = queryset.exclude(
+            if is_staff:
+                pass
+            else:
+                queryset = queryset.exclude(
                 Q(is_published=True, is_approved=False) & ~Q(owner=user)
                 )
         else:
-            queryset = queryset.exclude(is_published=True, is_approved=False)
+            queryset = queryset.exclude(Q(is_published=True, is_approved=False) | Q(is_published=False, is_approved=False))
         ######################################
         # And also not published, not approved
         # if user and user.is_authenticated:

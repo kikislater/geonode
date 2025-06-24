@@ -73,8 +73,8 @@ def exif_extract_metadata_doc(doc):
 
     if ext[1:] in {"jpg", "jpeg"}:
         from PIL import Image, ExifTags
-
-        img = Image.open(doc.doc_file.path)
+        
+        img = Image.open(storage_manager.open(doc.files[0]))
         exif_data = {ExifTags.TAGS[k]: v for k, v in img._getexif().items() if k in ExifTags.TAGS}
 
         model = None

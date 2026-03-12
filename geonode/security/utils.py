@@ -473,6 +473,7 @@ class AdvancedSecurityWorkflowManager:
         created: bool = False,
         approval_status_changed: bool = False,
         group_status_changed: bool = False,
+        user=None,
     ) -> dict:
         """
         Adapts the provided "perm_spec" accordingly to the following schema:
@@ -538,12 +539,18 @@ class AdvancedSecurityWorkflowManager:
 
             # Computing the MANAGERs and MEMBERs Permissions
             if not AdvancedSecurityWorkflowManager.is_auto_publishing_workflow():
+                is_admin = user.is_superuser if user and user.is_authenticated else False
+                
                 if group_status_changed:
+                    _explicit_groups = _perm_spec.get("groups", {}) if is_admin else {}
                     # Reset Groups/Manager Perms
                     _owner_perms = copy.deepcopy(_perm_spec["users"].get(_resource.owner, []))
                     _perm_spec["users"] = {_resource.owner: _owner_perms}
                     _perm_spec["groups"] = {}
 
+                if is_admin and _explicit_groups:
+                    _perm_spec["groups"].update(_explicit_groups)
+        
                 if ResourceGroupsAndMembersSet.managers:
                     for user in ResourceGroupsAndMembersSet.managers:
                         prev_perms = _perm_spec["users"].get(user, []) if "users" in _perm_spec else []
@@ -634,6 +641,7 @@ class AdvancedSecurityWorkflowManager:
         created: bool = False,
         approval_status_changed: bool = False,
         group_status_changed: bool = False,
+        user=None,
     ) -> dict:
         """
         Fix-ups the perm_spec accordingly to the enabled workflow (if any).
@@ -680,6 +688,7 @@ class AdvancedSecurityWorkflowManager:
                 created=created,
                 approval_status_changed=approval_status_changed,
                 group_status_changed=group_status_changed,
+                user=user,
             )
 
         return perm_spec

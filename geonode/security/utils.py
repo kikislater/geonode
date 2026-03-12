@@ -541,6 +541,16 @@ class AdvancedSecurityWorkflowManager:
             if not AdvancedSecurityWorkflowManager.is_auto_publishing_workflow():
                 is_admin = user.is_superuser if user and user.is_authenticated else False
                 
+                logger.debug(f"=== get_workflow_permissions ===")
+                logger.debug(f"user: {user}")
+                logger.debug(f"is_admin: {is_admin}")
+                logger.debug(f"group_status_changed: {group_status_changed}")
+                logger.debug(f"perm_spec BEFORE wipe: {_perm_spec}")
+                logger.debug(f"resource.is_published: {_resource.is_published}")
+                logger.debug(f"resource.is_approved: {_resource.is_approved}")
+                logger.debug(f"resource_groups: {ResourceGroupsAndMembersSet.resource_groups}")
+                logger.debug(f"managers: {ResourceGroupsAndMembersSet.managers}")
+                            
                 if group_status_changed:
                     _explicit_groups = _perm_spec.get("groups", {}) if is_admin else {}
                     # Reset Groups/Manager Perms
@@ -630,6 +640,9 @@ class AdvancedSecurityWorkflowManager:
                         safe_remove(prev_perms, _perm)
                 _perm_spec["groups"][ResourceGroupsAndMembersSet.registered_members_group] = list(set(prev_perms))
 
+        logger.debug(f"perm_spec AFTER: {_perm_spec}")
+        logger.debug(f"================================")
+        
         return _perm_spec
 
     @staticmethod

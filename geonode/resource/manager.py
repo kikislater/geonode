@@ -604,6 +604,7 @@ class ResourceManager(ResourceManagerInterface):
         created: bool = False,
         approval_status_changed: bool = False,
         group_status_changed: bool = False,
+        user=None,
     ) -> bool:
         _resource = instance or ResourceManager._get_instance(uuid)
         if _resource:
@@ -648,6 +649,7 @@ class ResourceManager(ResourceManagerInterface):
                         created=created,
                         approval_status_changed=approval_status_changed,
                         group_status_changed=group_status_changed,
+                        user=user,
                     )
 
                     """

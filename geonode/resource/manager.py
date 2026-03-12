@@ -604,7 +604,7 @@ class ResourceManager(ResourceManagerInterface):
         created: bool = False,
         approval_status_changed: bool = False,
         group_status_changed: bool = False,
-        user=None,
+        user: settings.AUTH_USER_MODEL = None,
     ) -> bool:
         _resource = instance or ResourceManager._get_instance(uuid)
         if _resource:

@@ -628,6 +628,7 @@ class ResourceBaseViewSet(ApiPresetsInitializer, DynamicModelViewSet, Advertised
                         "owner": request_params.get("owner", resource.owner.username),
                         "permissions": perms_spec_compact.extended,
                         "created": request_params.get("created", False),
+                        "user": request.user.username,
                     },
                 )
             elif request.method == "PATCH":
@@ -644,6 +645,7 @@ class ResourceBaseViewSet(ApiPresetsInitializer, DynamicModelViewSet, Advertised
                         "owner": request_params.get("owner", resource.owner.username),
                         "permissions": perms_spec_compact_resource.extended,
                         "created": request_params.get("created", False),
+                        "user": request.user.username,
                     },
                 )
             resouce_service_dispatcher.apply_async(args=(str(_exec_request.exec_id),), expiration=30)

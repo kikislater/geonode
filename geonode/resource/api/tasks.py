@@ -39,6 +39,7 @@ logger = logging.getLogger(__name__)
 
 
 def _get_param_value(_param, _input_value):
+    logger.debug(f"_get_param_value: param={_param.name} annotation={_param.annotation} value={_input_value}")
     _param_value = None
     if _param.annotation == typing.Union[object, None]:
         _param_value = resolve_type_serializer(_input_value)[0]
@@ -115,6 +116,8 @@ def resouce_service_dispatcher(self, execution_id: str):
                                         else:
                                             _kwargs[_param_name] = _param_value
 
+                                logger.debug(f"input_params: {_request.input_params}")
+                                logger.debug(f"kwargs being passed: {_kwargs}")
                                 _bindings = _signature.bind(*_args, **_kwargs)
                                 _bindings.apply_defaults()
 

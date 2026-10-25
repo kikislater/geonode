@@ -58,7 +58,7 @@ OpenLayers.Tile = OpenLayers.Class({
      * <OpenLayers.Layer.Grid>. For example, to be notified of the
      * ``loadend`` event of each tiles:
      * (code)
-     * new OpenLayers.Layer.OSM('osm', 'http://basemaps.cartocdn.com/rastertiles/voyager_nolabels/${z}/${x}/${y}.png', {
+     * new OpenLayers.Layer.OSM('osm', 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/${z}/${y}/${x}', {
      *     tileOptions: {
      *         eventListeners: {
      *             'loadend': function(evt) {

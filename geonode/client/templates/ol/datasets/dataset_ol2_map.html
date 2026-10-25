@@ -56,9 +56,9 @@
     if (source != null) {
     	var layers = [
             new OpenLayers.Layer.OSM("OpenCycleMap",
-              ["https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/${z}/${x}/${y}.png",
-               "https://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/${z}/${x}/${y}.png",
-               "https://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/${z}/${x}/${y}.png"]),
+              ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/${z}/${y}/${x}",
+               "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/${z}/${y}/${x}",
+               "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/${z}/${y}/${x}"]),
           	source
     	];
         // olMap is used by thumbnail.js to POST to the thumbnail update view

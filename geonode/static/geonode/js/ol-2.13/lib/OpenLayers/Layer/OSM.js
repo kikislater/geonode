@@ -36,7 +36,7 @@ OpenLayers.Layer.OSM = OpenLayers.Class(OpenLayers.Layer.XYZ, {
     /**
      * APIProperty: url
      * {String} The tileset URL scheme. Defaults to
-     * : http://[a|b|c].basemaps.cartocdn.com/rastertiles/voyager_nolabels/${z}/${x}/${y}.png
+     * : https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/${z}/${y}/${x}
      * (the official OSM tileset) if the second argument to the constructor
      * is null or undefined. To use another tileset you can have something
      * like this:
@@ -48,9 +48,9 @@ OpenLayers.Layer.OSM = OpenLayers.Class(OpenLayers.Layer.XYZ, {
      * (end)
      */
     url: [
-        'http://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/${z}/${x}/${y}.png',
-        'http://b.basemaps.cartocdn.com/rastertiles/voyager_nolabels/${z}/${x}/${y}.png',
-        'http://c.basemaps.cartocdn.com/rastertiles/voyager_nolabels/${z}/${x}/${y}.png'
+        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/${z}/${y}/${x}',
+        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/${z}/${y}/${x}',
+        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/${z}/${y}/${x}'
     ],
 
     /**
